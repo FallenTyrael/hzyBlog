@@ -1,6 +1,30 @@
 package com.test;
 
+import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
+
 public class Trans {
+	
+	/**
+	 * 比较同一个属性类的两个实例，返回属性值比较的map
+	 * @param obj1
+	 * @param obj2
+	 * @return
+	 * @throws IllegalAccessException 
+	 * @throws IllegalArgumentException 
+	 */
+	public Map<Object,Object> compareObjToObj(Object obj1,Object obj2) throws IllegalArgumentException, IllegalAccessException{
+		Map<Object,Object> result = new HashMap<Object,Object>();
+		Field[] fs= obj1.getClass().getDeclaredFields();
+		for(Field f:fs){
+			f.setAccessible(true);
+			Object v1 = f.get(obj1);
+			Object v2 = f.get(obj2);
+			result.put(f.getName(),String.valueOf(equals(v1,v2)));
+		}
+		return result;
+	}
 	/**
 	 * Campare to Object
 	 * @param obj1
