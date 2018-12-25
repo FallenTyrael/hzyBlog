@@ -7,7 +7,7 @@ import java.util.Map;
 public class Trans {
 	
 	/**
-	 * 比较同一个属性类的两个实例，返回属性值比较的map
+	 * Campare to Object，return map with true or false
 	 * @param obj1
 	 * @param obj2
 	 * @return
