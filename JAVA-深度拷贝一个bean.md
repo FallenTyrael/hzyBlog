@@ -1,4 +1,19 @@
 # 关于对象的拷贝
+
+- [关于对象的拷贝](#关于对象的拷贝)
+  - [1.BeanUtil简单测试](#1beanutil简单测试)
+    - [2个类的定义](#2个类的定义)
+    - [测试](#测试)
+    - [结果](#结果)
+    - [结论与问题溯源](#结论与问题溯源)
+  - [2.对象序列化](#2对象序列化)
+    - [概述](#概述)
+    - [实现](#实现)
+    - [测试](#测试-1)
+    - [结果](#结果-1)
+  - [3.总结](#3总结)
+  - [4.另一种深拷贝方法](#4另一种深拷贝方法)
+
 ## 1.BeanUtil简单测试
 在项目中由于需要对某些对象进行拷贝然后进行持久化操作，通过网络查询到apache和spring都提供了BeanUtils的深度拷贝工具包，写了个Demo做测试，定义了两个类Address和Person，其中Person的属性引用了Address类。
 ### 2个类的定义
@@ -68,7 +83,7 @@ public static void main(String test[]){
     }
 }
 ```
-#### 结果
+### 结果
 ```
 p1:com.brg.controller.Person@98129
 p2:com.brg.controller.Person@18e2867
@@ -78,7 +93,7 @@ p2:name=p2, age=18, addressAddress [province=天际, city=巨龙]
 p1:name=p1, age=18, addressAddress [province=罗德兰, city=亚诺尔隆德]
 p2:name=p2, age=18, addressAddress [province=罗德兰, city=亚诺尔隆德]
 ```
-#### 结论与问题溯源
+### 结论与问题溯源
 可以看出user和target的哈希码不相同，但是其中的对象地址都是一样的，BeanUtils只实现了浅拷贝。
 
 查看源码，也可以看出是浅拷贝，并且由于采用了反射，性能比比较差
