@@ -85,8 +85,8 @@ public static void main(String test[]){
 ```
 ### 结果
 ```
-p1:com.brg.controller.Person@98129
-p2:com.brg.controller.Person@18e2867
+p1:com.test.Person@98129
+p2:com.test.Person@18e2867
 p1:name=p1, age=18, addressAddress [province=天际, city=巨龙]
 p2:name=p2, age=18, addressAddress [province=天际, city=巨龙]
 将复制之后的对象地址修改：
