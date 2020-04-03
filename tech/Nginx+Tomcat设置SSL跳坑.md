@@ -1,7 +1,11 @@
 # Nginx+Tomcat设置SSL跳坑
+
 ## Nginx配置SSL
+
 多网站配置文件中，对一个地址添加2个server，一个监听443端口，用于https；一个监听80端口，用于http跳转https
-```
+
+```nginx
+
 server{
   ...
   listen 443;
@@ -20,15 +24,21 @@ server{
   server_name $web_site$;
   rewrite ^/(.*)$ https://$web_site$:443/$1 permanent;
 }
+
 ```
+
 修改后，通过以下命令校验，重新载入
-```
+
+```bash
 nginx -t
 nginx -s reload
 ```
+
 ## Tomcat与Nginx通过http连接
+
 修改Tomcat的server.xml文件,在Connector节点中，添加proxyPort="443",redirectPorty也修改为443
-```
+
+```xml
 此处443位https默认端口，可自定义
 <Connector port="8080" 
            protocol="HTTP/1.1"
